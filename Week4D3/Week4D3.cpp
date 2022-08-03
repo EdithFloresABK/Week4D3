@@ -4,9 +4,6 @@
 
 using namespace std;
 
-//Heap
-static int HeapInt = 0;
-
 //Stack
 void HelloWorldThread() {
     cout << "Hello World Thread!" << endl;
@@ -14,9 +11,8 @@ void HelloWorldThread() {
 
 int main()
 {
-    HeapInt = 5;
     cout << "Hello World!" << endl;
-    HelloWorldThread();
-    //std::thread Hello(HelloWorldThread);
+    std::thread Hello(HelloWorldThread);
+    Hello.join();
     return 0;
 }
