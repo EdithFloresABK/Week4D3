@@ -1,15 +1,19 @@
 
 #include <iostream>
 #include <thread>
+#include <chrono>
+#include <mutex>
 
 using namespace std;
 
 bool DidQuit = false;
 bool ShouldDecrementLife = false;
+std::mutex Mutex;
 
 struct Character {
     float Position = 0.0f;
-    int Score = 0;
+    std::atomic<int> Score = 0;
+    //int Score = 0;
     int Lives = 1;
 
     void DisplayStats() {
@@ -19,24 +23,28 @@ struct Character {
 
 Character Player;
 void UpdateCharacter1() {
+
+    std::lock_guard<std::mutex> Guard(Mutex);
     while (!DidQuit) {
         if (ShouldDecrementLife) {
             if (Player.Lives>0) {
-
-                //this_thread::sleep_for(chrono::milliseconds(500);
-                //std::thirs_thread::yield();
+                //std::lock_guard<std::mutex> Guard(Mutex);
+                //this_thread::sleep_for(chrono::milliseconds(500));
+                std::this_thread::yield() ;
                 --Player.Lives;
             }
         }
     }
 }
 void UpdateCharacter2() {
+
+    std::lock_guard<std::mutex> Guard(Mutex);
     while (!DidQuit) {
         if (ShouldDecrementLife) {
             if (Player.Lives > 0) {
-
+                //std::lock_guard<std::mutex> Guard(Mutex);
                 //this_thread::sleep_for(chrono::milliseconds(500);
-                //std::thirs_thread::yield();
+                std::this_thread::yield();
                 --Player.Lives;
             }
         }
