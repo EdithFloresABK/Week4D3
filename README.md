@@ -1,5 +1,5 @@
 # Week4D3
-
+## Part 1
 Challenge:
 
 Firstly, read ahead into the next chapter's challenges to understand the overarching Multithreading challenge
@@ -10,6 +10,9 @@ Attempt the small challenges shown along the way to familiarise yourself with th
 
 
 
+
+
+## Part2
 Challenge:
 
 Watch the videos and then create an input thread so the world state can update independent of the user input
